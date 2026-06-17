@@ -40,3 +40,13 @@ html[dir="rtl"] {
 ::-webkit-scrollbar-thumb:hover {
   background: #ff3d5f;
 }
+
+@keyframes glow-pulse {
+  0%, 100% { opacity: 0; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(1.15); }
+}
+
+.glow-layer-1 { animation: glow-pulse 2s ease-in-out infinite; }
+.glow-layer-2 { animation: glow-pulse 2s ease-in-out infinite 0.15s; }
+.glow-layer-3 { animation: glow-pulse 2s ease-in-out infinite 0.3s; }
+.glow-layer-4 { animation: glow-pulse 2s ease-in-out infinite 0.45s; }

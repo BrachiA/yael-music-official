@@ -25,8 +25,8 @@ export default function Navbar() {
           <span className="text-[#FF4B6E]">♪</span> יעל אנגל
         </Link>
 
-        {/* Desktop links */}
-        <div className="hidden md:flex items-center gap-8">
+        {/* Desktop links - מוצמדים ימין אל הלוגו */}
+        <div className="hidden md:flex items-center gap-8 ml-auto pr-10">
           {links.map(l => {
             const isActive = pathname === l.href
             return (
@@ -40,6 +40,10 @@ export default function Navbar() {
               </Link>
             )
           })}
+        </div>
+
+        {/* Admin Button - נשאר בצד שמאל מבודד */}
+        <div className="hidden md:block">
           <Link href="/admin"
             className="px-4 py-1.5 bg-[#FF4B6E] hover:bg-[#e03d5f] text-white rounded-lg text-sm font-semibold transition">
             Admin

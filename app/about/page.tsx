@@ -6,11 +6,17 @@ export default function About() {
       <div className="max-w-6xl mx-auto px-4">
         <div className="grid md:grid-cols-2 gap-16 items-center">
           <div className="text-[#0f0f1e]">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-pink-300 text-[#FF4B6E] text-sm mb-6">
-              <span>⚙️</span> אודות
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-pink-50 rounded-full mb-6">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4 text-pink-500">
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M6 12c0-1.7.7-3.2 1.8-4.2"></path>
+                <circle cx="12" cy="12" r="2"></circle>
+                <path d="M18 12c0 1.7-.7 3.2-1.8 4.2"></path>
+              </svg>
+              <span className="text-pink-600 text-xs tracking-wider uppercase font-medium">אודות</span>
             </div>
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              נעים להכיר <span className="text-[#FF4B6E]">(:)</span>
+              נעים להכיר <span className="text-[#FF4B6E]">:)</span>
             </h1>
             <p className="text-gray-700 text-lg leading-relaxed mb-5">
               יעלי אנגל, בת 19, יוצרת, מלחינה ומפיקה מוזיקלית. מגיל צעיר חיה ונושמת מוזיקה, ומביאה את הרגש והיצירתיות שלה לכל שיר שהיא נוגעת בו.

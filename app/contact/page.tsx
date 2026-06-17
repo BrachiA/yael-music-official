@@ -37,7 +37,7 @@ export default function Contact() {
           <span className="text-primary">צור קשר</span>
         </h1>
         <p className="text-gray-400 text-center mb-12">
-          רוצה לשתף משהו? שאל שאלה? בואי נדבר!
+          רוצה לשתף משהו? לשאל שאלה? בואי נדבר!
         </p>
 
         <form onSubmit={handleSubmit} className="bg-dark/50 border border-primary/30 rounded-lg p-8 space-y-6">
@@ -51,7 +51,7 @@ export default function Contact() {
               onChange={handleChange}
               required
               className="w-full px-4 py-2 bg-dark/50 border border-primary/30 rounded-lg text-white focus:border-primary outline-none transition"
-              placeholder="שלומך"
+              placeholder="שמך"
             />
           </div>
 
@@ -65,7 +65,7 @@ export default function Contact() {
               onChange={handleChange}
               required
               className="w-full px-4 py-2 bg-dark/50 border border-primary/30 rounded-lg text-white focus:border-primary outline-none transition"
-              placeholder="אימייל@example.com"
+              placeholder="example@gmail.com"
             />
           </div>
 
@@ -79,7 +79,7 @@ export default function Contact() {
               onChange={handleChange}
               required
               className="w-full px-4 py-2 bg-dark/50 border border-primary/30 rounded-lg text-white focus:border-primary outline-none transition"
-              placeholder="מה בעניין זה?"
+              placeholder="נושא השיחה"
             />
           </div>
 
@@ -93,7 +93,7 @@ export default function Contact() {
               required
               rows={6}
               className="w-full px-4 py-2 bg-dark/50 border border-primary/30 rounded-lg text-white focus:border-primary outline-none transition resize-none"
-              placeholder="כתוב את ההודעה שלך כאן..."
+              placeholder="כתבי את ההודעה שלך כאן..."
             />
           </div>
 
