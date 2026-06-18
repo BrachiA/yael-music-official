@@ -1,6 +1,8 @@
 'use client'
 
 import { useState } from 'react'
+import { supabase } from '@/lib/supabase'
+
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -21,13 +23,20 @@ export default function Contact() {
     e.preventDefault()
     setLoading(true)
     
-    // TODO: Send to Supabase
-    setTimeout(() => {
+    /*send to supabase*/ 
+    const { error } = await supabase.from('messages').insert({
+      name: formData.name,
+      email: formData.email,
+      subject: formData.subject,
+      message: formData.message,
+    })
+    
+    if (!error) {
       setSubmitted(true)
       setFormData({ name: '', email: '', subject: '', message: '' })
-      setLoading(false)
-      setTimeout(() => setSubmitted(false), 5000)
-    }, 1000)
+    }
+    setLoading(false)
+    setTimeout(() => setSubmitted(false), 5000)
   }
 
   return (

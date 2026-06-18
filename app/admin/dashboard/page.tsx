@@ -58,18 +58,37 @@ export default function AdminDashboard() {
     setLoading(false)
   }
 
-  const handleUploadAudio = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0]
-    if (!file) return
-    setUploading(true)
-    const fileName = `${Date.now()}-${file.name}`
-    const { data, error } = await supabase.storage.from('songs').upload(fileName, file)
-    if (!error && data) {
-      const { data: urlData } = supabase.storage.from('songs').getPublicUrl(fileName)
-      setForm((prev: any) => ({ ...prev, audio_url: urlData.publicUrl }))
-    }
+const handleUploadAudio = async (e: React.ChangeEvent<HTMLInputElement>) => {
+  const file = e.target.files?.[0]
+  if (!file) return
+  setUploading(true)
+  
+  const fileExtension = file.name.split('.').pop()
+  const fileName = `${Date.now()}-${Math.random().toString(36).substring(7)}.${fileExtension}`
+  
+  const { error: uploadError } = await supabase.storage
+    .from('songs')
+    .upload(fileName, file, { upsert: true })
+  
+  if (uploadError) {
+    alert('שגיאה: ' + uploadError.message)
     setUploading(false)
+    return
   }
+  
+  const { data: urlData } = supabase.storage
+    .from('songs')
+    .getPublicUrl(fileName)
+  
+  // שמירת ה-URL ישירות ב-form state
+  setForm((prev: any) => {
+    const updated = { ...prev, audio_url: urlData.publicUrl }
+    return updated
+  })
+  
+  alert('✅ הקובץ עלה! עכשיו לחצי שמור.')
+  setUploading(false)
+}
 
   const handleSave = async () => {
     setLoading(true)
@@ -85,10 +104,15 @@ export default function AdminDashboard() {
     fetchData()
   }
 
-  const handleDelete = async (id: string) => {
+  /*const handleDelete = async (id: string) => {
     if (!confirm('למחוק?')) return
     const table = activeTab === 'songs' ? 'songs' : activeTab === 'performances' ? 'performances' : 'playbacks'
     await supabase.from(table).delete().eq('id', id)
+    fetchData()
+  }*/
+ const handleDelete = async (id: string) => {
+    if (!confirm('למחוק?')) return
+    await supabase.from(activeTab).delete().eq('id', id)
     fetchData()
   }
 
@@ -316,14 +340,29 @@ export default function AdminDashboard() {
           <div className="space-y-3">
             {messages.length === 0 && <p className="text-gray-400">אין הודעות עדיין</p>}
             {messages.map(m => (
-              <div key={m.id} className="bg-white/5 border border-white/10 rounded-xl px-5 py-4">
-                <div className="flex justify-between mb-2">
-                  <p className="font-semibold">{m.name}</p>
-                  <p className="text-gray-400 text-xs">{new Date(m.created_at).toLocaleDateString('he-IL')}</p>
+              <div key={m.id} className="bg-white/5 border border-white/10 rounded-xl px-5 py-4 flex items-start justify-between gap-4">
+                
+                {/* כל הטקסט הקיים שלך עטוף כעת בתוך flex-1 */}
+                <div className="flex-1">
+                  <div className="flex justify-between mb-2">
+                    <p className="font-semibold">{m.name}</p>
+                    <p className="text-gray-400 text-xs">{new Date(m.created_at).toLocaleDateString('he-IL')}</p>
+                  </div>
+                  <p className="text-[#FF4B6E] text-sm mb-1">{m.email}</p>
+                  {m.subject && <p className="text-gray-300 text-sm font-medium mb-1">{m.subject}</p>}
+                  <p className="text-gray-400 text-sm">{m.message}</p>
                 </div>
-                <p className="text-[#FF4B6E] text-sm mb-1">{m.email}</p>
-                {m.subject && <p className="text-gray-300 text-sm font-medium mb-1">{m.subject}</p>}
-                <p className="text-gray-400 text-sm">{m.message}</p>
+
+                {/* כפתור המחיקה החדש בהתאמה לעיצוב הקיים */}
+                <div className="flex gap-2 shrink-0">
+                  <button 
+                    onClick={() => handleDelete(m.id)} 
+                    className="px-3 py-1 bg-red-600/30 hover:bg-red-600/50 rounded-lg text-sm transition"
+                  >
+                    מחיקה
+                  </button>
+                </div>
+
               </div>
             ))}
           </div>
