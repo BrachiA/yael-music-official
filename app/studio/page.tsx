@@ -37,7 +37,7 @@ export default function Studio() {
               <h3 className="text-xl font-bold mb-3 text-primary">פרטים</h3>
               <p className="text-gray-400 mb-2">
                 <strong>כתובת:</strong><br />
-                רחוב הלל, 11, ברן
+                רחוב 600, 11, בני ברק
               </p>
               <p className="text-gray-400 mb-2">
                 <strong>מייל:</strong><br />

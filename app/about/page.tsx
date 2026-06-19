@@ -44,7 +44,7 @@ export default function About() {
           </div>
           <div className="rounded-2xl overflow-hidden h-[500px] shadow-2xl">
             <img
-              src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=800&q=80"
+              src="/about-hero.png"
               alt="יעל אנגל על הבמה"
               className="w-full h-full object-cover"
             />

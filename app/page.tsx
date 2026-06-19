@@ -13,7 +13,10 @@ export default function Home() {
         {/* Background image - concert crowd */}
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: "url('https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=1600&q=80')" }}
+          style={{ backgroundImage: "url('https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=1920&amp;q=80')",
+                filter: "blur(6px)",
+                transform: "scale(1.05)"
+           }}
         />
         {/* Gradient overlay */}
         <div className="absolute inset-0 bg-gradient-to-b from-purple-900/70 via-pink-900/50 to-[#0f0f1e]/90" />
@@ -21,17 +24,17 @@ export default function Home() {
         {/* Content */}
         <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
           <p className="text-gray-200 tracking-[0.5em] text-sm mb-6">
-            יוצרת &nbsp;·&nbsp; מלחינה &nbsp;·&nbsp; מפיקה
+            זמרת &nbsp;·&nbsp; יוצרת &nbsp;·&nbsp; מפיקה
           </p>
-          <h1 className="text-6xl md:text-8xl lg:text-9xl font-normal mb-8 leading-normal py-2"
-            style={{
-              fontFamily: '"Brush Script MT", cursive',
-              letterSpacing: '0.08em',
-            }}>
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-300 via-pink-400 to-rose-400">
-              Yael Engel
-            </span>
-          </h1>
+<h1 className="text-6xl md:text-8xl lg:text-9xl font-normal mb-8 leading-normal py-2"
+  style={{
+    fontFamily: '"Brush Script MT", cursive',
+    letterSpacing: '0.08em',
+  }}>
+  <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-300 via-pink-400 to-rose-400">
+  yael engl
+  </span>
+</h1>
           <p className="text-xl md:text-2xl font-semibold mb-2">כל מה שתצטרכו להפקת שיר</p>
           <p className="text-gray-300 text-lg mb-12">מהמילים והלחן ועד שלב המיקס</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -92,7 +95,7 @@ export default function Home() {
           </div>
           <div className="rounded-2xl overflow-hidden h-[500px] order-1 md:order-2 shadow-2xl">
             <img
-              src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=800&q=80"
+              src="/about-hero.png"
               alt="יעל אנגל על הבמה"
               className="w-full h-full object-cover"
             />
