@@ -18,6 +18,7 @@ export const metadata: Metadata = {
     description: 'האתר הרשמי של יעל אנגל, זמרת יוצרת ומפיקה מוזיקה.',
     type: 'website',
     url: 'https://yael-music-official.com',
+
   },
 }
 
