@@ -188,11 +188,31 @@ const handleUploadAudio = async (e: React.ChangeEvent<HTMLInputElement>) => {
                   <input value={form.album || ''} onChange={e => setForm({ ...form, album: e.target.value })}
                     className="w-full px-3 py-2 bg-white/10 border border-white/20 rounded-lg text-white text-sm outline-none focus:border-[#FF4B6E]" />
                 </div>
-                <div>
-                  <label className="block text-sm text-gray-400 mb-1">קישור לתמונה (URL)</label>
-                  <input value={form.cover_url || ''} onChange={e => setForm({ ...form, cover_url: e.target.value })}
-                    className="w-full px-3 py-2 bg-white/10 border border-white/20 rounded-lg text-white text-sm outline-none focus:border-[#FF4B6E]" />
-                </div>
+<div>
+  <label className="block text-sm text-gray-400 mb-1">תמונת שיר</label>
+  <input
+    type="file"
+    accept="image/*"
+    onChange={async (e) => {
+      const file = e.target.files?.[0]
+      if (!file) return
+      const fileExt = file.name.split('.').pop()
+      const fileName = `${Date.now()}.${fileExt}`
+      const { data, error } = await supabase.storage
+      .from('images')
+        .upload(fileName, file)
+      if (error) { alert('שגיאה בהעלאה'); return }
+      const { data: urlData } = supabase.storage
+      .from('images')
+        .getPublicUrl(fileName)
+      setForm({ ...form, cover_url: urlData.publicUrl })
+    }}
+    className="w-full px-3 py-2 bg-white/10 border border-white/20 rounded-lg text-white text-sm outline-none focus:border-[#FF4B6E]"
+  />
+  {form.cover_url && (
+    <img src={form.cover_url} className="mt-2 w-16 h-16 rounded-lg object-cover" alt="תצוגה מקדימה" />
+  )}
+</div>
                 <div className="md:col-span-2">
                   <label className="block text-sm text-gray-400 mb-2">העלאת קובץ שיר (MP3)</label>
                   <input type="file" accept="audio/*" onChange={handleUploadAudio}
